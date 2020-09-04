@@ -82,6 +82,7 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
         this.bindingId.forEach(id => {
           document.getElementById(id).style.opacity = '1';
           document.getElementById(id).onclick = () => { };
+          this.scrollStatus = true;
         });
       }
     });
@@ -101,7 +102,6 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
   ngAfterViewChecked() {
     if (this.scrollStatus === true) {
       document.getElementById('scrollToLast').scrollIntoView();
-      this.scrollStatus = null;
     } else if (this.scrollStatus === false) {
        document.getElementById('typingScroll').scrollIntoView();
     }
@@ -125,7 +125,7 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
       translucent: true,
       componentProps: {id: clickedId}
     });
-    return popover.present();
+    return await popover.present();
   }
 
   private dateTimeParser(dateTime: string) {
@@ -140,6 +140,7 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
     this.bindingId.forEach(id => {
       document.getElementById(id).ontouchcancel = (event) => {
         this.openPopover(event, id);
+        this.scrollStatus = null;
       };
     });
   }
@@ -147,7 +148,7 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
   private bindingClickEvent() {
     this.bindingId.forEach(id => {
       document.getElementById(id).onclick = () => {
-        this.toggleSelection(id)
+        this.toggleSelection(id);
       };
     });
   }
