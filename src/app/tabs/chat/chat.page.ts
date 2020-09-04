@@ -46,7 +46,6 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
     private popoverController: PopoverController,
     private chatService: ChatService
     ) {
-      console.log('constructor')
     this.isTyping = false;
     this.bindingId = [];
     this.selectedMessage = new Set();
@@ -58,7 +57,6 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
     this.deselectPressedSubscriber.unsubscribe();
   }
   ngOnInit(): void {
-    console.log('ngOnInit')
     this.selectedIdSubscriber = this.chatService.selectedId.subscribe(id => {
       this.toggleSelection(id);
       this.bindingClickEvent();
@@ -82,11 +80,10 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
 
     this.deselectPressedSubscriber = this.chatService.deselectPressed.subscribe(status => {
       if (status) {
-        this.selectedMessage.forEach(id => {
+        this.bindingId.forEach(id => {
           document.getElementById(id).style.opacity = '1';
-          document.getElementById(id).removeEventListener('click', () => {
-            this.toggleSelection(id);
-          });
+          console.log(id)
+          document.getElementById(id).onclick = () => { };
         });
       }
     });
@@ -106,6 +103,7 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
   ngAfterViewChecked() {
     if (this.scrollStatus === true) {
       document.getElementById('scrollToLast').scrollIntoView();
+      this.scrollStatus = null;
     } else if (this.scrollStatus === false) {
        document.getElementById('typingScroll').scrollIntoView();
     }
@@ -142,17 +140,17 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
 
   private bindEvent() {
     this.bindingId.forEach(id => {
-      document.getElementById(id).addEventListener('touchcancel', (event) => {
+      document.getElementById(id).ontouchcancel = (event) => {
         this.openPopover(event, id);
-      });
+      };
     });
   }
 
   private bindingClickEvent() {
     this.bindingId.forEach(id => {
-      document.getElementById(id).addEventListener('click', () => {
-        this.toggleSelection(id);
-      });
+      document.getElementById(id).onclick = () => {
+        this.toggleSelection(id)
+      };
     });
   }
 
