@@ -1,0 +1,71 @@
+<ion-content>
+  <div class="container">
+    <div class="card">
+      <h1 class="title">Login</h1>
+      <form>
+        <div class="input-container">
+          <input type="#{type}" id="username-login" required="required"/>
+          <label for="username-login">Username</label>
+          <div class="bar"></div>
+        </div>
+        <div class="input-container">
+          <input type="#{type}" id="password-login" required="required"/>
+          <label for="password-login">Password</label>
+          <div class="bar"></div>
+        </div>
+        <div class="button-container">
+          <button (click)="login()"><span>Go</span></button>
+        </div>
+        <div class="footer"><a href="#">Forgot your password?</a></div>
+        <div class="toggle footer" (click)="onClickToggle()"><a>Register</a></div>
+      </form>
+    </div>
+    <div class="card alt">
+      <div class="toggle" (click)="onClickToggle()"></div>
+      <h1 class="title">Register
+        <div class="close" (click)="onClickClose()"></div>
+      </h1>
+      <form (submit)="register()">
+        <div class="input-container">
+          <input type="text" id="username-reg" required="required"/>
+          <label for="username-reg">Username</label>
+          <div class="bar"></div>
+
+          <!-- <div class="alert alert-danger feedback" *ngIf="!registrationForm.controls['username'].valid && (registrationForm.controls['username'].dirty || registrationForm.controls['username'].touched)">
+            <span *ngIf="registrationForm.controls['username'].errors.required">
+                Username is required
+            </span>
+          </div>
+          <div class="alert alert-danger feedback" *ngIf="isuserNameAvailable && (registrationForm.controls['username'].dirty || registrationForm.controls['username'].touched)">
+            username
+            <strong>{{registrationForm.controls['username'].value}}</strong> is already taken.
+          </div> -->
+
+        </div>
+        <div class="input-container">
+          <input type="#{type}" id="password-reg" required="required"/>
+          <label for="password-reg">Password</label>
+          <div class="bar"></div>
+          <!-- <div class="feedback" *ngIf="!registrationForm.controls['password'].valid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
+            <span *ngIf="registrationForm.controls['password'].errors.required">
+                Password is required
+            </span>
+            <span *ngIf="registrationForm.controls['password'].errors.minlength">
+              Password must be 8 characters long, we need another {{registrationForm.controls['password'].errors.minlength.requiredLength
+              - registrationForm.controls['password'].errors.minlength.actualLength}} characters
+            </span>
+          </div> -->
+        </div>
+        <div class="input-container">
+          <input type="#{type}" id="reapeat-password-reg" required="required"/>
+          <label for="reapeat-password-reg">Repeat Password</label>
+          <div class="bar"></div>
+        </div>
+        <div class="button-container">
+          <!-- <button [disabled]="!registrationForm.valid"><span>Register</span></button> -->
+          <button (click)="register()"><span>Register</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

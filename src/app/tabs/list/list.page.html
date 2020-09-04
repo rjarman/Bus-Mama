@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-list style="margin-top: 60px;">
+    <ion-item *ngFor="let busDatum of busData" lines="none" style="padding: 0;margin: 0;">
+      <ion-card style="padding: 0;margin: 2px;width: 100%;" routerLink="/tabs/map/{{busDatum.busId}}">
+        <!-- <div class="busCard">#{{busDatum.busId}}</div> -->
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-align-self-center" size="2.7">
+              <ion-avatar style="padding: 0;margin: 0;">
+                <img src="{{busDatum.image}}" alt="busDatum">
+              </ion-avatar>
+            </ion-col>
+            <ion-col class="ion-align-self-center" size="9.3">
+              <ion-card-header style="padding: 0;margin: 0;">
+                <!-- <ion-card-subtitle>#{{busDatum.busId}}</ion-card-subtitle> -->
+                <ion-card-title style="text-align: center;">গন্তব্য {{busDatum.departure.from}} থেকে {{busDatum.departure.to}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content style="padding: 0;margin: 0;text-align: center;">
+                সকালে ছাড়ার সময় {{busDatum.departure.startTime}} <br> আর রাতে ফেরার সময় {{busDatum.departure.endTime}}
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

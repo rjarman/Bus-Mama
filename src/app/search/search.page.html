@@ -1,0 +1,38 @@
+<!-- <ion-header> -->
+  <ion-toolbar>
+    <ion-button fill="clear" slot="start" class="back-button">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-button>
+    <ion-searchbar (ionInput)="onInput()"></ion-searchbar>
+  </ion-toolbar>
+<!-- </ion-header> -->
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let bus of busList" lines="none" style="padding: 0;margin: 0;">
+      <ion-card style="padding: 0;margin: 2px;" routerLink="/tabs/tabs/map/{{bus.latitude}}&{{bus.longitude}}">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-align-self-center" size="2.7">
+              <ion-avatar style="padding: 0;margin: 0;">
+                <img src="{{bus.image}}" alt="bus">
+              </ion-avatar>
+            </ion-col>
+            <ion-col class="ion-align-self-center" size="9.3">
+              <ion-card-header style="padding: 0;margin: 0;">
+                <ion-card-subtitle>#{{bus.busNumber}}</ion-card-subtitle>
+                <ion-card-title>From {{bus.departureFrom}} To {{bus.departureTo}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content style="padding: 0;margin: 0;">
+                {{bus.description}}
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<!--<ion-avatar>-->
+<!--  <img src="{{bus.image}}" alt="bus">-->
+<!--</ion-avatar>-->
+<!--<ion-label>{{bus.busNumber}}</ion-label>-->

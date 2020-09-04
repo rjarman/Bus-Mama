@@ -1,5 +1,7 @@
 {
   "name": "bus-mama",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
