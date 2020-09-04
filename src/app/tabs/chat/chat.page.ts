@@ -52,7 +52,6 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
     this.scrollStatus = true;
   }
   ngOnDestroy(): void {
-    console.log('ngOnDestroy')
     this.selectedIdSubscriber.unsubscribe();
     this.deselectPressedSubscriber.unsubscribe();
   }
@@ -82,7 +81,6 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
       if (status) {
         this.bindingId.forEach(id => {
           document.getElementById(id).style.opacity = '1';
-          console.log(id)
           document.getElementById(id).onclick = () => { };
         });
       }
