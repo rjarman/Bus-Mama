@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
 
   profile: Profile;
-  messages: [Message];
+  messages: Message[];
 
   sentMessage: string;
   isTyping: boolean;
