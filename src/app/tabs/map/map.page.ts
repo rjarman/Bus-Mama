@@ -68,13 +68,17 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
       });
 
     let isTracked = false;
+    let isRenderedStreet = true;
     if (this.trackBusId) {
       this.toggleLoading(true);
       this.getTrackBusDataUnsubscribe = this.serverService
         .getTrackBusData(this.trackBusId)
         .subscribe((info) => {
           this.trackedBus = info.body['data'][0];
-          this.renderStreet();
+          if (isRenderedStreet) {
+            this.renderStreet();
+            isRenderedStreet = false;
+          }
           isTracked = true;
           this.toggleLoading(false);
         });
@@ -415,7 +419,7 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
         infoWindowData.busData.location.coordinates
       ),
       pixelOffset: new google.maps.Size(0, -50),
-      maxWidth: 280,
+      maxWidth: 300,
     });
   }
 
@@ -430,7 +434,11 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private renderStreet() {
-    new google.maps.DirectionsService().route(
+    const directionsService = new google.maps.DirectionsService();
+    /**
+     * @rendering_from_user_to_bus
+     */
+    directionsService.route(
       {
         destination: this.getCoordinates(this.trackedBus.location.coordinates),
         origin: this.userCoordinates,
@@ -445,12 +453,34 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
         if (status === 'OK') {
           new google.maps.DirectionsRenderer({
             markerOptions: { visible: false },
-            polylineOptions: {
-              strokeColor: '#DD0000',
-              strokeWeight: 7,
-              strokeOpacity: 0.7,
-            },
-            directions: result,
+            polylineOptions: { strokeWeight: 7, strokeColor: '#f28482' },
+            preserveViewport: true,
+            directions: result
+          }).setMap(this.googleMap);
+        }
+      }
+    );
+    /**
+     * @rendering_from_bus_to_BSMRSTU
+     */
+    directionsService.route(
+      {
+        destination: this.defaultCoordinates,
+        origin: this.getCoordinates(this.trackedBus.location.coordinates),
+        travelMode: google.maps.TravelMode.DRIVING,
+        drivingOptions: {
+          departureTime: new Date(),
+          trafficModel: google.maps.TrafficModel.BEST_GUESS,
+        },
+        provideRouteAlternatives: true,
+      },
+      (result, status) => {
+        if (status === 'OK') {
+          new google.maps.DirectionsRenderer({
+            markerOptions: { visible: false },
+            polylineOptions: { strokeWeight: 7, strokeColor: '#90be6d' },
+            preserveViewport: true,
+            directions: result
           }).setMap(this.googleMap);
         }
       }
