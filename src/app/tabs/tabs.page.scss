@@ -5,14 +5,23 @@
   width: 100px;
 }
 
-#menu-background {
-  // --background: url(a);
-  height: 169px;
+#menu-profile {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 20px;
+
+  > ion-avatar {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+  }
 }
 
-#menu-profile {
-  margin-left: 25px;
-  margin-top: 60px;
+#menu-cover {
+  position: relative;
+  margin-bottom: 40px;
+  >img {
+    opacity: 85%;
+  }
 }
 
 .drawer-btn {
@@ -30,20 +39,15 @@
   margin-right: 10px;
 }
 
-.drawer-text {
-  margin-left: 30px;
-  margin-top: 5px;
-  width: 100%;
-
-  .drawer-text-name {
-    font-weight: 900;
-  }
-
-  .drawer-text-email {
-    color: black;
-    cursor: pointer;
-  }
+.drawer-text-name {
+  font-weight: 900;
 }
+
+.drawer-text-email {
+  color: black;
+  cursor: pointer;
+}
+
 #searchBar {
   height: 50px;
   cursor: pointer;

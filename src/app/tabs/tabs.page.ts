@@ -3,6 +3,7 @@ import { AuthService } from '../auth/auth.service';
 import { createAnimation } from '@ionic/core';
 import { ChatService } from './chat/chat.service';
 import { ServerService } from '../server.service';
+import { UserInfo } from '../shared/Interfaces';
 
 @Component({
   selector: 'app-tabs',
@@ -10,9 +11,7 @@ import { ServerService } from '../server.service';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  private userName: string;
-  private email: string;
-  private photo: string;
+  userInfo: UserInfo = { email: '', name: '' };
 
   constructor(
     private authService: AuthService,
@@ -29,7 +28,7 @@ export class TabsPage implements OnInit {
     });
 
     this.serverService.getUserData.subscribe((data) => {
-      console.log(data);
+      this.userInfo = data.body['data'][0];
     });
 
     // this.tabService.getUserDrawerData().subscribe(

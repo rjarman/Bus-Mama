@@ -1,17 +1,18 @@
 <ion-menu side="start" menuId="first" contentId="menu-items">
-  <ion-header>
-    <ion-toolbar id="menu-background" [ngStyle]="coverPhotoStyle">
-      <ion-avatar id="menu-profile">
-        <img src="{{photo}}" alt="profile" />
-      </ion-avatar>
-      <div class="drawer-text">
-        <ion-text class="drawer-text-name">{{userName}}</ion-text><br />
-        <a href="mailto:{{email}}" class="drawer-text-email">{{email}}</a>
-      </div>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content id="menu-items">
+    <div id="menu-cover">
+      <img src="../../assets/profile/cover_land.jpg" alt="coverPhoto" />
+      <div id="menu-profile">
+        <ion-avatar>
+          <img src="../../assets/profile/rafsun.JPG" alt="profile" />
+        </ion-avatar>
+        <ion-text class="drawer-text-name">{{userInfo.name}}</ion-text><br />
+        <a href="mailto:{{userInfo.email}}" class="drawer-text-email"
+          >{{userInfo.email}}</a
+        >
+      </div>
+    </div>
+    
     <ion-list>
       <div matRipple>
         <ion-button class="drawer-btn" fill="clear" routerLink="/settings">

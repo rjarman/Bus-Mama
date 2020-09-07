@@ -219,7 +219,7 @@ export class ChatPage
           this.sentToServerData._id
         }1' style="opacity: 100%;">
         <h6>${this.sentMessage}</h6>
-        <p>${this.profile.name} at ${
+        <p>${this.profile.info.name} at ${
           this.dateTimeParser(this.sentToServerData.send.date)[1]
         }</p>
         </div>
@@ -240,7 +240,7 @@ export class ChatPage
         message._id
       }1'" style="opacity: 100%;">
         <h6>${message.send.message}</h6>
-        <p>${this.profile.name} at ${
+        <p>${this.profile.info.name} at ${
         this.dateTimeParser(message.send.date)[1]
       }</p>
       </div>
