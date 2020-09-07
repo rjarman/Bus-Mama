@@ -18,6 +18,7 @@ export interface Message {
 export interface UserInfo {
   email: string;
   name: string;
+  image: string;
 }
 export interface Profile {
   info: UserInfo;

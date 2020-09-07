@@ -4,7 +4,7 @@
       <img src="../../assets/profile/cover_land.jpg" alt="coverPhoto" />
       <div id="menu-profile">
         <ion-avatar>
-          <img src="../../assets/profile/rafsun.JPG" alt="profile" />
+          <img src="{{userInfo.image}}" alt="profile" />
         </ion-avatar>
         <ion-text class="drawer-text-name">{{userInfo.name}}</ion-text><br />
         <a href="mailto:{{userInfo.email}}" class="drawer-text-email"
@@ -12,7 +12,7 @@
         >
       </div>
     </div>
-    
+
     <ion-list>
       <div matRipple>
         <ion-button class="drawer-btn" fill="clear" routerLink="/settings">

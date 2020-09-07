@@ -11,7 +11,7 @@ import { UserInfo } from '../shared/Interfaces';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  userInfo: UserInfo = { email: '', name: '' };
+  userInfo: UserInfo = { email: '', name: '', image: '' };
 
   constructor(
     private authService: AuthService,
@@ -29,6 +29,7 @@ export class TabsPage implements OnInit {
 
     this.serverService.getUserData.subscribe((data) => {
       this.userInfo = data.body['data'][0];
+      console.log(this.userInfo);
     });
 
     // this.tabService.getUserDrawerData().subscribe(
