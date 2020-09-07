@@ -8,15 +8,12 @@ import { AuthService } from './auth.service';
   styleUrls: ['./auth.page.scss'],
 })
 export class AuthPage implements OnInit {
-
-
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClickToggle() {
-      $('.toggle').on('click', () => {
+    $('.toggle').on('click', () => {
       $('.container').stop().addClass('active');
     });
   }
@@ -33,8 +30,7 @@ export class AuthPage implements OnInit {
     // }
   }
 
-  login(){
+  login() {
     this.authService.login();
   }
-
 }

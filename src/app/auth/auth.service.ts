@@ -3,17 +3,15 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   // private _isUserLogin = false;
 
+  constructor(private route: Router, private cookieService: CookieService) {}
 
-  constructor(private route: Router, private cookieService: CookieService) { }
-
-  isUserLogin(){
-    if(this.cookieService.get('_isUserLogin') === 'true') {
+  isUserLogin() {
+    if (this.cookieService.get('_isUserLogin') === 'true') {
       return true;
     }
     return false;
@@ -21,12 +19,14 @@ export class AuthService {
 
   login() {
     this.cookieService.set('_isUserLogin', 'true');
+    this.cookieService.set('email', 'sss@gmail.com');
     // this._isUserLogin = true;
     this.route.navigateByUrl('/');
   }
 
   logout() {
     this.cookieService.delete('_isUserLogin');
+    this.cookieService.delete('email');
     console.log('jhfgjgj');
     // this._isUserLogin = false;
     this.route.navigateByUrl('/auth');

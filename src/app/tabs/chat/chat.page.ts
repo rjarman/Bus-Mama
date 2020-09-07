@@ -89,7 +89,7 @@ export class ChatPage implements OnInit, AfterViewChecked, AfterViewInit, OnDest
    }
 
   ngAfterViewInit(): void {
-    this.serverService.getUserData().subscribe(
+    this.serverService.getUserData.subscribe(
       response => {
         this.profile = response.body['data'][0];
         this.messages = this.profile.messages;

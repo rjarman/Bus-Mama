@@ -62,7 +62,7 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.getBusDataIntervalUnsubscribe = this.serverService
-      .getBusDataInterval()
+      .getBusDataInterval
       .subscribe((data) => {
         this.busData = data.body['data'];
       });
@@ -118,7 +118,7 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
       this.initMap();
     }
     this.getBusDataUnsubscribe = this.serverService
-      .getBusData()
+      .getBusData
       .subscribe((data) => {
         this.busData = data.body['data'];
         this.setGoogleMap(true);

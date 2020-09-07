@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { createAnimation, Animation } from '@ionic/core';
+import { createAnimation } from '@ionic/core';
 import { ChatService } from './chat/chat.service';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-tabs',
@@ -15,7 +16,8 @@ export class TabsPage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private serverService: ServerService
     ) { }
 
   ngOnInit() {
@@ -25,6 +27,10 @@ export class TabsPage implements OnInit {
         this.disableToggle('true');
         this.selectionAnimation(0, 55);
       }
+    });
+
+    this.serverService.getUserData.subscribe(data => {
+      console.log(data);
     });
 
     // this.tabService.getUserDrawerData().subscribe(
