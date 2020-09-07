@@ -15,13 +15,10 @@ export interface Message {
   tag?: string;
 }
 
-export interface UserInfo {
+export interface Profile {
   email: string;
   name: string;
   image: string;
-}
-export interface Profile {
-  info: UserInfo;
   messages: Message[];
 }
 

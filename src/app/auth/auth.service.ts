@@ -19,7 +19,7 @@ export class AuthService {
 
   login() {
     this.cookieService.set('_isUserLogin', 'true');
-    this.cookieService.set('email', 'sss@gmail.com');
+    this.cookieService.set('email', 'armanrafsunjany@gmail.com');
     // this._isUserLogin = true;
     this.route.navigateByUrl('/');
   }

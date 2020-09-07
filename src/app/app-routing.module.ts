@@ -28,14 +28,6 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: 'settings',
-    loadChildren: () =>
-      import('./drawer/settings/settings.module').then(
-        (m) => m.SettingsPageModule
-      ),
-    canLoad: [AuthGuard],
-  },
-  {
     path: 'about',
     loadChildren: () =>
       import('./drawer/about/about.module').then((m) => m.AboutPageModule),
