@@ -10,32 +10,36 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
+        loadChildren: () =>
+          import('./list/list.module').then((m) => m.ListPageModule),
       },
       {
         path: 'chat',
-        loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
+        loadChildren: () =>
+          import('./chat/chat.module').then((m) => m.ChatPageModule),
       },
       {
         path: '',
         redirectTo: '/tabs/map',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'map',
         children: [
           {
             path: '',
-            loadChildren: () => import('./map/map.module').then(m => m.MapPageModule)
+            loadChildren: () =>
+              import('./map/map.module').then((m) => m.MapPageModule),
           },
           {
             path: ':busId',
-            loadChildren: () => import('./map/map.module').then(m => m.MapPageModule)
-          }
-        ]
-      }
-    ]
-  }
+            loadChildren: () =>
+              import('./map/map.module').then((m) => m.MapPageModule),
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 @NgModule({

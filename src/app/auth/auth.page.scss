@@ -1,4 +1,4 @@
-@import "../../../node_modules/bourbon/core/bourbon";
+@import '../../../node_modules/bourbon/core/bourbon';
 
 // Main Colors
 $accent: null;
@@ -16,19 +16,19 @@ $max-width: 460px;
 
 // Mixins
 $level: 1;
-@mixin transition($args...){
+@mixin transition($args...) {
   transition: $args;
 }
 
-@mixin animation($args...){
+@mixin animation($args...) {
   animation: $args;
 }
 
-@mixin transform($args...){
+@mixin transform($args...) {
   transform: $args;
 }
 
-@mixin keyframes(){
+@mixin keyframes() {
   @-webkit-keyframes buttonFadeInUp {
     0% {
       bottom: 30px;
@@ -99,7 +99,7 @@ $level: 1;
           transition: transform 0.3s ease;
 
           &:before {
-            content: "";
+            content: '';
           }
         }
 
@@ -135,7 +135,6 @@ $level: 1;
     }
   }
 }
-
 
 /* Card */
 .card {
@@ -229,7 +228,7 @@ $level: 1;
 
       &:before,
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         background: $accent;
         width: 0;
@@ -276,7 +275,7 @@ $level: 1;
       }
 
       &:before {
-        content: "";
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;
@@ -408,7 +407,7 @@ $level: 1;
         font-weight: 400;
 
         &:before {
-          content: "\00d7";
+          content: '\00d7';
         }
       }
     }

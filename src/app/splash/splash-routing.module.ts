@@ -6,8 +6,8 @@ import { SplashPage } from './splash.page';
 const routes: Routes = [
   {
     path: '',
-    component: SplashPage
-  }
+    component: SplashPage,
+  },
 ];
 
 @NgModule({

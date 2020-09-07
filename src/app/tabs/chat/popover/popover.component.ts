@@ -8,13 +8,14 @@ import { ChatService } from '../chat.service';
   styleUrls: ['./popover.component.scss'],
 })
 export class PopoverComponent implements OnInit {
-
   @Input() id;
 
-  constructor(private popoverController: PopoverController, private chatService: ChatService) { }
+  constructor(
+    private popoverController: PopoverController,
+    private chatService: ChatService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   select() {
     this.chatService.selectedId.next(this.id);
@@ -29,5 +30,4 @@ export class PopoverComponent implements OnInit {
   info() {
     console.log('info');
   }
-
 }

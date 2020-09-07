@@ -1,33 +1,45 @@
 <ion-content class="bg">
-  <ion-row style="margin-top: 60px;">
+  <ion-row style="margin-top: 60px">
     <!-- <ion-col style="overflow: scroll;height: 100%;" (scroll)="abc($event)"> -->
-      <ion-col style="overflow: scroll;height: 100%;">
+    <ion-col style="overflow: scroll; height: 100%">
       <div class="chat-container">
-        <div id = "messageData"></div>
+        <div id="messageData"></div>
       </div>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="isTyping" id="typingScroll">
     <ion-col>
-      <div style="margin-left: 10px; padding-left: 8px;">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <div style="margin-left: 10px; padding-left: 8px">
+        <span class="dot"></span><span class="dot"></span
+        ><span class="dot"></span>
       </div>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col style="margin-top: 45px;margin-left: -3px;">
+    <ion-col style="margin-top: 45px; margin-left: -3px">
       <div class="chat-controls" [ngClass]="{'active': showOptions}">
         <ion-row class="bg-white" class="ion-no-padding">
           <ion-col size="11" class="ion-no-padding">
             <ion-list lines="none" class="ion-no-padding">
-              <ion-item style="padding: 0;">
-                <ion-textarea id="messageHolder" spellcheck=true [(ngModel)]="sentMessage" placeholder="Type your message" type="text"></ion-textarea>
+              <ion-item style="padding: 0">
+                <ion-textarea
+                  id="messageHolder"
+                  spellcheck="true"
+                  [(ngModel)]="sentMessage"
+                  placeholder="Type your message"
+                  type="text"
+                ></ion-textarea>
               </ion-item>
             </ion-list>
           </ion-col>
           <ion-col size="1" class="ion-no-padding">
             <p class="ion-text-right icon-controls">
-              <ion-icon mode="ios" name="send" class="text-primary" (click)="sendMessage()"></ion-icon>
+              <ion-icon
+                mode="ios"
+                name="send"
+                class="text-primary"
+                (click)="sendMessage()"
+              ></ion-icon>
             </p>
           </ion-col>
         </ion-row>
@@ -35,10 +47,5 @@
     </ion-col>
   </ion-row>
 
- 
-  
   <div id="scrollToLast"></div>
-
-  
-
 </ion-content>

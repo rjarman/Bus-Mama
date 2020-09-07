@@ -1,19 +1,16 @@
-
-
 <ion-menu side="start" menuId="first" contentId="menu-items">
   <ion-header>
-    <ion-toolbar id="menu-background" [ngStyle] = "coverPhotoStyle">
-
+    <ion-toolbar id="menu-background" [ngStyle]="coverPhotoStyle">
       <ion-avatar id="menu-profile">
-        <img src="{{photo}}" alt="profile">
+        <img src="{{photo}}" alt="profile" />
       </ion-avatar>
       <div class="drawer-text">
-        <ion-text class="drawer-text-name">{{userName}}</ion-text><br>
+        <ion-text class="drawer-text-name">{{userName}}</ion-text><br />
         <a href="mailto:{{email}}" class="drawer-text-email">{{email}}</a>
       </div>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content id="menu-items">
     <ion-list>
       <div matRipple>
@@ -21,13 +18,13 @@
           <ion-icon class="drawer-btn-icon" name="settings"></ion-icon>Settings
         </ion-button>
       </div>
-      <hr>
+      <hr />
       <div matRipple>
         <ion-button class="drawer-btn" fill="clear" routerLink="/about">
           <ion-icon class="drawer-btn-icon" name="information"></ion-icon>About
         </ion-button>
       </div>
-      <hr>
+      <hr />
       <div matRipple>
         <ion-button class="drawer-btn" fill="clear" (click)="logout()">
           <ion-icon class="drawer-btn-icon" name="log-out"></ion-icon>Logout
@@ -39,18 +36,24 @@
 
 <!--  <ion-header>-->
 <ion-card id="searchBar">
-  <ion-card-content style="padding: 0;margin: 0;">
-    <ion-grid style="padding: 0;margin: 0;">
+  <ion-card-content style="padding: 0; margin: 0">
+    <ion-grid style="padding: 0; margin: 0">
       <ion-row class="ion-align-items-center">
-        <ion-col size="2" style="height: 44px;">
-         <div style="margin-top: -8px;margin-left: -10px;">
-           <ion-button fill="clear" style="width: 100%;height: 100%;">
-             <ion-menu-button></ion-menu-button>
-           </ion-button>
-         </div>
+        <ion-col size="2" style="height: 44px">
+          <div style="margin-top: -8px; margin-left: -10px">
+            <ion-button fill="clear" style="width: 100%; height: 100%">
+              <ion-menu-button></ion-menu-button>
+            </ion-button>
+          </div>
         </ion-col>
-        <ion-col size="10" routerDirection="forward" routerLink="/search" id="search-bar" style="height: 44px;">
-          <div style="margin-top: 10px;margin-bottom: 10px;">
+        <ion-col
+          size="10"
+          routerDirection="forward"
+          routerLink="/search"
+          id="search-bar"
+          style="height: 44px"
+        >
+          <div style="margin-top: 10px; margin-bottom: 10px">
             <ion-text>Search for bus number</ion-text>
           </div>
         </ion-col>
@@ -60,13 +63,16 @@
 </ion-card>
 
 <ion-content>
-
-<ion-row>
-  <ion-col size="12" id="selectMessage">
-      <img src="../../../assets/icon/close.png" alt="close" (click)="deselect()">
-      <img src="../../../assets/icon/all.png" alt="all" (click)="selectAll()">
-  </ion-col>
-</ion-row>
+  <ion-row>
+    <ion-col size="12" id="selectMessage">
+      <img
+        src="../../../assets/icon/close.png"
+        alt="close"
+        (click)="deselect()"
+      />
+      <img src="../../../assets/icon/all.png" alt="all" (click)="selectAll()" />
+    </ion-col>
+  </ion-row>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="list" (click)="deselect()">
@@ -84,4 +90,3 @@
     </ion-tab-bar>
   </ion-tabs>
 </ion-content>
-

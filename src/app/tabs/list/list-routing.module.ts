@@ -6,8 +6,8 @@ import { ListPage } from './list.page';
 const routes: Routes = [
   {
     path: '',
-    component: ListPage
-  }
+    component: ListPage,
+  },
 ];
 
 @NgModule({

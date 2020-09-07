@@ -9,7 +9,10 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class ServerService {
-  constructor(private httpClient: HttpClient, private cookieService: CookieService) {}
+  constructor(
+    private httpClient: HttpClient,
+    private cookieService: CookieService
+  ) {}
 
   get getUserData() {
     return this.httpClient.get(URL.chat, {

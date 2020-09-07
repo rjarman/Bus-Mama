@@ -23,11 +23,11 @@ export class ListPage implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.getBusDataUnsubscribe = this.serverService
-      .getBusData
-      .subscribe((response) => {
+    this.getBusDataUnsubscribe = this.serverService.getBusData.subscribe(
+      (response) => {
         this.busData = response.body['data'];
-      });
+      }
+    );
   }
 
   doRefresh(event) {

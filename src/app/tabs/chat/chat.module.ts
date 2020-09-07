@@ -10,14 +10,8 @@ import { ChatPage } from './chat.page';
 import { PopoverComponent } from './popover/popover.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ChatPageRoutingModule
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, ChatPageRoutingModule],
   declarations: [ChatPage, PopoverComponent],
-  entryComponents: [PopoverComponent
-  ]
+  entryComponents: [PopoverComponent],
 })
 export class ChatPageModule {}

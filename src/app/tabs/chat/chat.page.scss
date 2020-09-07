@@ -1,113 +1,111 @@
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .chat-box {
+    width: 100%;
     height: 100%;
-    .chat-box {
+    position: relative;
+    background: #f9fbfc;
+    .message-area {
+      max-height: 90%;
+      height: 90%;
+      overflow: auto;
+      padding: 15px 10px;
+      .message {
+        p {
+          color: #8a898b;
+          font-size: 13px;
+          font-weight: bold;
+          margin: 0px;
+          max-width: 95%;
+          min-width: 55%;
+          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+          padding: 10px 15px 10px 7px;
+          margin: 5px 0;
+          background: white;
+        }
+      }
+      .message.incoming {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        p {
+          color: white;
+          border-radius: 0 11px 11px 11px;
+          background: #b9c0e9;
+        }
+      }
+      .message.outgoing {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        p {
+          border-radius: 11px 11px 0 11px;
+        }
+      }
+    }
+    .emo-area {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
       width: 100%;
-      height: 100%;
-      position: relative;
-      background: #f9fbfc;
-      .message-area {
-        max-height: 90%;
-        height: 90%;
-        overflow: auto;
-        padding: 15px 10px;
-        .message {
-          p {
-            color: #8a898b;
-            font-size: 13px;
-            font-weight: bold;
-            margin: 0px;
-            max-width: 95%;
-            min-width: 55%;
-            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-            padding: 10px 15px 10px 7px;
-            margin: 5px 0;
-            background: white;
-          }
-        }
-        .message.incoming {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: flex-start;
-          p {
-            color: white;
-            border-radius: 0 11px 11px 11px;
-            background: #B9C0E9;
-          }
-        }
-        .message.outgoing {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          align-items: flex-end;
-          p {
-            border-radius: 11px 11px 0 11px;
-          }
-        }
-      }
-      .emo-area {
-        position: absolute;
-        bottom: 50px;
-        left: 0;
-        width: 100%;
-        padding: 3px 10px;
-      }
+      padding: 3px 10px;
+    }
 
-      
     .input-area {
-        position: absolute;
-        bottom: 1px;
-        left: 0;
-        width: 100%;
-        height: 50px;
-        background: white;
-        form {
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: white;
+      form {
         display: flex;
         height: 100%;
 
         ion-input {
-            width: 82%;
-            border: none;
-            padding: 5px 10px;
-            color: #8a898b;
-            font-size: 14px;
-            font-weight: bold;
-            font-family: 'Titillium Web', sans-serif;
-            background: inherit;
-            &:focus {
+          width: 82%;
+          border: none;
+          padding: 5px 10px;
+          color: #8a898b;
+          font-size: 14px;
+          font-weight: bold;
+          font-family: 'Titillium Web', sans-serif;
+          background: inherit;
+          &:focus {
             outline: none;
-            }
+          }
         }
         button {
-            width: 10%;
-            border: none;
-            color: #8a898b;
-            opacity: 0.9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            background: inherit;
-            ion-icon {
+          width: 10%;
+          border: none;
+          color: #8a898b;
+          opacity: 0.9;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          background: inherit;
+          ion-icon {
             font-size: 3rem;
-            }
+          }
         }
-        }
+      }
     }
-    }
-
   }
+}
 
 .dot {
-  display:inline-block;
-  width:5px;
-  height:5px;
-  border-radius:50%;
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   margin-right: 1px;
-  background:#303131;
+  background: #303131;
   animation: wave 1.3s linear infinite;
 
   &:nth-child(2) {
@@ -118,9 +116,11 @@
     animation-delay: -0.9s;
   }
 }
-  
+
 @keyframes wave {
-  0%, 60%, 100% {
+  0%,
+  60%,
+  100% {
     transform: initial;
   }
 

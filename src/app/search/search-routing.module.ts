@@ -6,8 +6,8 @@ import { SearchPage } from './search.page';
 const routes: Routes = [
   {
     path: '',
-    component: SearchPage
-  }
+    component: SearchPage,
+  },
 ];
 
 @NgModule({

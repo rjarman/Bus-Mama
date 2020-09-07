@@ -10,13 +10,8 @@ import { MapPage } from './map.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    MapPageRoutingModule
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, MapPageRoutingModule],
   providers: [Geolocation],
-  declarations: [MapPage]
+  declarations: [MapPage],
 })
 export class MapPageModule {}

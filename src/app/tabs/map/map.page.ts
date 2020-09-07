@@ -61,11 +61,11 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getBusDataIntervalUnsubscribe = this.serverService
-      .getBusDataInterval
-      .subscribe((data) => {
+    this.getBusDataIntervalUnsubscribe = this.serverService.getBusDataInterval.subscribe(
+      (data) => {
         this.busData = data.body['data'];
-      });
+      }
+    );
 
     let isTracked = false;
     let isRenderedStreet = true;
@@ -117,14 +117,14 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.initMap();
     }
-    this.getBusDataUnsubscribe = this.serverService
-      .getBusData
-      .subscribe((data) => {
+    this.getBusDataUnsubscribe = this.serverService.getBusData.subscribe(
+      (data) => {
         this.busData = data.body['data'];
         this.setGoogleMap(true);
         this.addMarkerEvent();
         this.getBusDataUnsubscribe.unsubscribe();
-      });
+      }
+    );
   }
 
   private toggleLoading(state: boolean) {
@@ -455,7 +455,7 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
             markerOptions: { visible: false },
             polylineOptions: { strokeWeight: 7, strokeColor: '#f28482' },
             preserveViewport: true,
-            directions: result
+            directions: result,
           }).setMap(this.googleMap);
         }
       }
@@ -480,7 +480,7 @@ export class MapPage implements OnInit, AfterViewInit, OnDestroy {
             markerOptions: { visible: false },
             polylineOptions: { strokeWeight: 7, strokeColor: '#90be6d' },
             preserveViewport: true,
-            directions: result
+            directions: result,
           }).setMap(this.googleMap);
         }
       }

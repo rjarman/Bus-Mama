@@ -6,39 +6,47 @@ const routes: Routes = [
   { path: '', redirectTo: 'tabs', pathMatch: 'full', canLoad: [AuthGuard] },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
+    loadChildren: () =>
+      import('./auth/auth.module').then((m) => m.AuthPageModule),
   },
   {
     path: 'splash',
-    loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () =>
+      import('./splash/splash.module').then((m) => m.SplashPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () =>
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'search',
-    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () =>
+      import('./search/search.module').then((m) => m.SearchPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'settings',
-    loadChildren: () => import('./drawer/settings/settings.module').then( m => m.SettingsPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () =>
+      import('./drawer/settings/settings.module').then(
+        (m) => m.SettingsPageModule
+      ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'about',
-    loadChildren: () => import('./drawer/about/about.module').then( m => m.AboutPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () =>
+      import('./drawer/about/about.module').then((m) => m.AboutPageModule),
+    canLoad: [AuthGuard],
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

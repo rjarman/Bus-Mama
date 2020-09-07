@@ -15,8 +15,8 @@ import { MatRippleModule } from '@angular/material/core';
     FormsModule,
     IonicModule,
     TabsPageRoutingModule,
-    MatRippleModule
+    MatRippleModule,
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage],
 })
 export class TabsPageModule {}

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
-
-  constructor() { }
+  constructor() {}
 
   getFilteredResult() {
     const searchbar = document.querySelector('ion-searchbar');
@@ -14,7 +13,7 @@ export class SearchService {
     function handleInput(event) {
       const query = event.target.value.toLowerCase();
       requestAnimationFrame(() => {
-        items.forEach(item => {
+        items.forEach((item) => {
           const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
           // @ts-ignore
           item.style.display = shouldShow ? 'block' : 'none';

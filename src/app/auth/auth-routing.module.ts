@@ -6,8 +6,8 @@ import { AuthPage } from './auth.page';
 const routes: Routes = [
   {
     path: '',
-    component: AuthPage
-  }
+    component: AuthPage,
+  },
 ];
 
 @NgModule({

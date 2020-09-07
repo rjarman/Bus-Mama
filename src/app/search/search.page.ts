@@ -7,10 +7,9 @@ import { SearchService } from '../service/search.service';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
-
   busList: any;
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService) {}
 
   ngOnInit() {
     // this.listService.getBusList().subscribe(
@@ -21,7 +20,7 @@ export class SearchPage implements OnInit {
     // this.searchService.getFilteredResult();
   }
 
-  onInput(){
+  onInput() {
     this.searchService.getFilteredResult();
   }
 }

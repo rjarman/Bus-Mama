@@ -9,12 +9,7 @@ import { SplashPageRoutingModule } from './splash-routing.module';
 import { SplashPage } from './splash.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    SplashPageRoutingModule
-  ],
-  declarations: [SplashPage]
+  imports: [CommonModule, FormsModule, IonicModule, SplashPageRoutingModule],
+  declarations: [SplashPage],
 })
 export class SplashPageModule {}
