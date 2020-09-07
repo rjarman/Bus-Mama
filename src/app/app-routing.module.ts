@@ -26,13 +26,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./search/search.module').then((m) => m.SearchPageModule),
     canLoad: [AuthGuard],
-  },
-  {
-    path: 'about',
-    loadChildren: () =>
-      import('./drawer/about/about.module').then((m) => m.AboutPageModule),
-    canLoad: [AuthGuard],
-  },
+  }
 ];
 
 @NgModule({

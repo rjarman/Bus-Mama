@@ -1,7 +1,15 @@
 export const URL = {
-  chat: 'http://localhost:3000/profile',
-  list: 'http://localhost:3000/bus',
+  CHAT: 'http://localhost:3000/profile',
+  LIST: 'http://localhost:3000/bus',
+  SOCIAL: {
+    FACEBOOK: 'https://facebook.com/rafsunjany.arman.1',
+    BLOG: 'https://cs-mingle.com',
+    GIT: 'https://github.com/rjarman/Fire-Free',
+    LINKEDIN: 'https://www.linkedin.com/in/rafsun-jany-arman/',
+  },
 };
 
-// sendMesssage = http://localhost:3000/tabs/tabs/chat/userSendMessage
-// drawer = http://localhost:3000/tabs/tabs/drawer
+export const DOCUMENT = {
+  ABOUT:
+    'This application is specially designed for Bus-Mama hardware project. Details of everything is given as the link below.',
+};

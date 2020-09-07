@@ -15,20 +15,20 @@ export class ServerService {
   ) {}
 
   get getUserData() {
-    return this.httpClient.get(URL.chat, {
+    return this.httpClient.get(URL.CHAT, {
       observe: 'response',
       params: new HttpParams().append('email', this.cookieService.get('email')),
     });
   }
 
   get getBusData() {
-    return this.httpClient.get(URL.list, { observe: 'response' });
+    return this.httpClient.get(URL.LIST, { observe: 'response' });
   }
 
   get getBusDataInterval() {
     return interval(10000).pipe(
       flatMap(() => {
-        return this.httpClient.get(URL.list, { observe: 'response' });
+        return this.httpClient.get(URL.LIST, { observe: 'response' });
       })
     );
   }
@@ -36,7 +36,7 @@ export class ServerService {
   getTrackBusData(id: string) {
     return interval(10000).pipe(
       flatMap(() => {
-        return this.httpClient.get(URL.list, {
+        return this.httpClient.get(URL.LIST, {
           observe: 'response',
           params: new HttpParams().append('busId', id),
         });
