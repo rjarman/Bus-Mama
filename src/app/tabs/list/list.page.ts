@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ServerService } from 'src/app/server.service';
-import { BusInterface } from 'src/app/shared/Interfaces';
+import { BusInterface } from 'src/app/shared/types';
 import { Subscription } from 'rxjs';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, AfterViewChecked, AfterViewInit } from '@angular/core';
-import { Message, Profile } from 'src/app/shared/Interfaces';
+import { Message, Profile } from 'src/app/shared/types';
 import { ServerService } from 'src/app/server.service';
 
 @Component({

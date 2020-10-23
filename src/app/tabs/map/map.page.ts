@@ -16,7 +16,7 @@ import {
   GPS,
   MapGeneratedData,
   InfoWindowData,
-} from 'src/app/shared/Interfaces';
+} from 'src/app/shared/types';
 
 @Component({
   selector: 'app-map',
