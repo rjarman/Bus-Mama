@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { createAnimation } from '@ionic/core';
-import { ChatService } from './chat/chat.service';
 import { ServerService } from '../server.service';
 import { AlertController, MenuController } from '@ionic/angular';
 import { URL, DOCUMENT } from 'src/app/config';
@@ -20,20 +18,12 @@ export class TabsPage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private chatService: ChatService,
     private serverService: ServerService,
     private alertController: AlertController,
     private menuController: MenuController
   ) {}
 
   ngOnInit() {
-    this.chatService.toggleSelection.subscribe((status) => {
-      if (status) {
-        this.disableToggle('true');
-        this.selectionAnimation(0, 55);
-      }
-    });
-
     this.serverService.getUserData.subscribe((data) => {
       this.userInfo = data.body['data'][0];
     });
@@ -92,44 +82,6 @@ export class TabsPage implements OnInit {
         window.open(URL.SOCIAL.LINKEDIN);
         this.alertController.dismiss();
       });
-  }
-
-  private selectionAnimation(from: number, to: number) {
-    const selectMessageId = document.getElementById('selectMessage');
-    const animation = createAnimation()
-      .addElement(selectMessageId)
-      .duration(50)
-      .iterations(1)
-      .keyframes([
-        { offset: 0, transform: `translateY(${from}px)` },
-        { offset: 1, transform: `translateY(${to}px)` },
-      ]);
-
-    animation.play();
-  }
-
-  private disableToggle(status: string) {
-    document
-      .getElementById('searchBar')
-      .querySelector('ion-menu-button')
-      .setAttribute('disabled', status);
-    document.getElementById('searchBar').setAttribute('disabled', status);
-    document.getElementById('selectMessage').style.display = '';
-  }
-
-  deselect() {
-    this.chatService.deselectPressed.next(true);
-    this.disableToggle('false');
-    document.getElementById('messageHolder').setAttribute('disabled', 'false');
-    document.getElementById('selectMessage').style.display = 'none';
-  }
-
-  selectAll() {
-    this.chatService.selectAllPressed.next(true);
-  }
-
-  onClick() {
-    console.log('settings');
   }
 
   logout() {

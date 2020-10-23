@@ -58,23 +58,13 @@
 </ion-card>
 
 <ion-content>
-  <ion-row>
-    <ion-col size="12" id="selectMessage">
-      <img
-        src="../../../assets/icon/close.png"
-        alt="close"
-        (click)="deselect()"
-      />
-      <img src="../../../assets/icon/all.png" alt="all" (click)="selectAll()" />
-    </ion-col>
-  </ion-row>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="list" (click)="deselect()">
+      <ion-tab-button tab="list">
         <ion-icon name="list"></ion-icon>
         <ion-label>List</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="map" (click)="deselect()">
+      <ion-tab-button tab="map">
         <ion-icon name="navigate"></ion-icon>
         <ion-label>Map</ion-label>
       </ion-tab-button>
