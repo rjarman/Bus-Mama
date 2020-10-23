@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SearchService } from './service/search.service';
+import { SearchService } from './tabs/search.service';
 import { CommonModule } from '@angular/common';
 
 import { CookieService } from 'ngx-cookie-service';
