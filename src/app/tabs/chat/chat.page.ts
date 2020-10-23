@@ -1,43 +1,24 @@
-import {
-  Component,
-  OnInit,
-  AfterViewChecked,
-  AfterViewInit,
-  OnDestroy,
-  Input,
-} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { URL } from 'src/app/config';
+import { Component, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { Message, Profile } from 'src/app/shared/Interfaces';
 import { ServerService } from 'src/app/server.service';
-import { PopoverController } from '@ionic/angular';
-import { PopoverComponent } from './popover/popover.component';
-import { ChatService } from './chat.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
 })
-export class ChatPage
-  implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
+export class ChatPage implements AfterViewChecked, AfterViewInit {
   profile: Profile;
   messages: Message[];
 
   sentMessage: string;
   isTyping: boolean;
 
-  bindingId: any;
-  private selectedIdSubscriber: Subscription;
-  private deselectPressedSubscriber: Subscription;
-  private selectedMessage;
-
   sentToServerData = {
     _id: '001',
     send: {
       date: Date.now().toString(),
-      message: this.sentMessage,
+      message: '',
     },
     reply: {
       date: Date.now().toString(),
@@ -47,57 +28,9 @@ export class ChatPage
 
   private scrollStatus;
 
-  constructor(
-    private serverService: ServerService,
-    private popoverController: PopoverController,
-    private chatService: ChatService
-  ) {
+  constructor(private serverService: ServerService) {
     this.isTyping = false;
-    this.bindingId = [];
-    this.selectedMessage = new Set();
     this.scrollStatus = true;
-  }
-  ngOnDestroy(): void {
-    this.selectedIdSubscriber.unsubscribe();
-    this.deselectPressedSubscriber.unsubscribe();
-  }
-  ngOnInit(): void {
-    this.selectedIdSubscriber = this.chatService.selectedId.subscribe((id) => {
-      this.toggleSelection(id);
-      this.bindingClickEvent();
-    });
-
-    this.chatService.toggleSelection.subscribe((status) => {
-      if (status) {
-        document
-          .getElementById('messageHolder')
-          .setAttribute('disabled', 'true');
-      }
-    });
-
-    this.chatService.selectAllPressed.subscribe((status) => {
-      if (status) {
-        this.bindingId.forEach((id) => {
-          document.getElementById(id).style.opacity = '.5';
-          this.selectedMessage.add(id);
-          document
-            .getElementById('messageHolder')
-            .setAttribute('disabled', 'true');
-        });
-      }
-    });
-
-    this.deselectPressedSubscriber = this.chatService.deselectPressed.subscribe(
-      (status) => {
-        if (status) {
-          this.bindingId.forEach((id) => {
-            document.getElementById(id).style.opacity = '1';
-            document.getElementById(id).onclick = () => {};
-            this.scrollStatus = true;
-          });
-        }
-      }
-    );
   }
 
   ngAfterViewInit(): void {
@@ -105,7 +38,6 @@ export class ChatPage
       this.profile = response.body['data'][0];
       this.messages = this.profile.messages;
       this.messageParser();
-      this.bindEvent();
     });
   }
 
@@ -117,50 +49,12 @@ export class ChatPage
     }
   }
 
-  private toggleSelection(id: string) {
-    const opacity = document.getElementById(id).style.opacity;
-    if (opacity === '1') {
-      document.getElementById(id).style.opacity = '.5';
-      this.selectedMessage.add(id);
-    } else {
-      document.getElementById(id).style.opacity = '1';
-      this.selectedMessage.delete(id);
-    }
-  }
-
-  private async openPopover(e, clickedId) {
-    const popover = await this.popoverController.create({
-      component: PopoverComponent,
-      event: e,
-      translucent: true,
-      componentProps: { id: clickedId },
-    });
-    return await popover.present();
-  }
-
   private dateTimeParser(dateTime: string) {
     const tempDateTime = new Date(dateTime);
     const date = tempDateTime.toDateString();
     const timeSplit = tempDateTime.toTimeString().split(':');
     const time = timeSplit[0] + ':' + timeSplit[1];
     return [date, time];
-  }
-
-  private bindEvent() {
-    this.bindingId.forEach((id) => {
-      document.getElementById(id).ontouchcancel = (event) => {
-        this.openPopover(event, id);
-        this.scrollStatus = null;
-      };
-    });
-  }
-
-  private bindingClickEvent() {
-    this.bindingId.forEach((id) => {
-      document.getElementById(id).onclick = () => {
-        this.toggleSelection(id);
-      };
-    });
   }
 
   private replyHandler() {
@@ -180,10 +74,6 @@ export class ChatPage
         resolve();
       }, 3000);
     }).then(() => {
-      this.bindingId.push(this.sentToServerData._id + '1');
-      this.bindingId.push(this.sentToServerData._id + '2');
-
-      this.bindEvent();
       this.isTyping = false;
       clearTimeout(timeout);
 
@@ -250,8 +140,6 @@ export class ChatPage
           <p>Bus-Mama at ${this.dateTimeParser(message.reply.date)[1]}</p>
         </div>
         `;
-      this.bindingId.push(message._id + '1');
-      this.bindingId.push(message._id + '2');
     });
   }
 }
