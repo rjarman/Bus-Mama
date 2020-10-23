@@ -12,14 +12,14 @@
   left: 20px;
 
   > ion-avatar {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
   }
 }
 
 #menu-cover {
   position: relative;
   margin-bottom: 40px;
-  >img {
+  > img {
     opacity: 85%;
   }
 }
