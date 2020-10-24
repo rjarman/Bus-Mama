@@ -9,7 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SearchService } from './tabs/search.service';
 import { CommonModule } from '@angular/common';
 
 import { CookieService } from 'ngx-cookie-service';
@@ -28,7 +27,6 @@ import { CookieService } from 'ngx-cookie-service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SearchService,
     CookieService,
   ],
   bootstrap: [AppComponent],

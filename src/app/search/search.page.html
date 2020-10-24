@@ -3,19 +3,19 @@
   <ion-button fill="clear" slot="start" class="back-button">
     <ion-back-button defaultHref="/"></ion-back-button>
   </ion-button>
-  <ion-searchbar (ionInput)="onInput()"></ion-searchbar>
+  <ion-searchbar id="search" (ionChange)="onInput()"></ion-searchbar>
 </ion-toolbar>
 <!-- </ion-header> -->
 <ion-content>
-  <ion-list>
+  <ion-list id="search-items">
     <ion-item
-      *ngFor="let bus of busList"
+      *ngFor="let bus of busData"
       lines="none"
       style="padding: 0; margin: 0"
     >
       <ion-card
         style="padding: 0; margin: 2px"
-        routerLink="/tabs/tabs/map/{{bus.latitude}}&{{bus.longitude}}"
+        routerLink="/tabs/map/{{bus.busId}}"
       >
         <ion-grid>
           <ion-row>
@@ -26,14 +26,15 @@
             </ion-col>
             <ion-col class="ion-align-self-center" size="9.3">
               <ion-card-header style="padding: 0; margin: 0">
-                <ion-card-subtitle>#{{bus.busNumber}}</ion-card-subtitle>
-                <ion-card-title
-                  >From {{bus.departureFrom}} To
-                  {{bus.departureTo}}</ion-card-title
+                <ion-card-subtitle><b>#{{bus.busId}}</b></ion-card-subtitle>
+                <ion-card-content style="padding: 0; margin: 0"
+                  >গন্তব্য <b>{{bus.departure.from}}</b> থেকে
+                  <b>{{bus.departure.to}}</b></ion-card-content
                 >
               </ion-card-header>
               <ion-card-content style="padding: 0; margin: 0">
-                {{bus.description}}
+                আমি বাইরে থাকি {{bus.departure.startTime}} থেকে
+                {{bus.departure.endTime}} পর্যন্ত
               </ion-card-content>
             </ion-col>
           </ion-row>
