@@ -2,22 +2,38 @@
   <div class="container">
     <div class="card">
       <h1 class="title">Login</h1>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="input-container">
-          <input type="#{type}" id="username-login" required="required" />
-          <label for="username-login">Username</label>
+          <input
+            type="email"
+            id="username-login"
+            formControlName="email"
+            required
+          />
+          <label for="username-login">Email</label>
           <div class="bar"></div>
         </div>
         <div class="input-container">
-          <input type="#{type}" id="password-login" required="required" />
+          <input
+            id="password-login"
+            type="password"
+            formControlName="password"
+            required
+          />
           <label for="password-login">Password</label>
           <div class="bar"></div>
         </div>
         <div class="button-container">
-          <button (click)="login()"><span>Go</span></button>
+          <button type="submit" [disabled]="!loginForm.valid">
+            <span>Go</span>
+          </button>
         </div>
-        <div class="footer"><a href="#">Forgot your password?</a></div>
-        <div class="toggle footer" (click)="onClickToggle()">
+        <!-- <div class="footer"><a href="#">Forgot your password?</a></div> -->
+        <div
+          class="toggle footer"
+          (click)="onClickToggle()"
+          style="width: fit-content; margin: auto"
+        >
           <a>Register</a>
         </div>
       </form>
@@ -28,11 +44,64 @@
         Register
         <div class="close" (click)="onClickClose()"></div>
       </h1>
-      <form (submit)="register()">
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="register()"
+        enctype="multipart/form-data"
+      >
+      <div class="input-container">
+        <input
+          type="text"
+          id="username-reg"
+          formControlName="userName"
+          required
+        />
+         <label for="username-reg">Username</label>
+        <div class="bar"></div>
+        <!-- <div class="feedback" *ngIf="!registrationForm.controls['password'].valid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
+          <span *ngIf="registrationForm.controls['password'].errors.required">
+              Password is required
+          </span>
+          <span *ngIf="registrationForm.controls['password'].errors.minlength">
+            Password must be 8 characters long, we need another {{registrationForm.controls['password'].errors.minlength.requiredLength
+            - registrationForm.controls['password'].errors.minlength.actualLength}} characters
+          </span>
+        </div> -->
+      </div>
+      <div class="input-container">
+        <input
+          type="email"
+          id="password-reg"
+          formControlName="email"
+          required
+        />
+        <label for="password-reg">Email</label>
+        <div class="bar"></div>
+        <!-- <div class="feedback" *ngIf="!registrationForm.controls['password'].valid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
+          <span *ngIf="registrationForm.controls['password'].errors.required">
+              Password is required
+          </span>
+          <span *ngIf="registrationForm.controls['password'].errors.minlength">
+            Password must be 8 characters long, we need another {{registrationForm.controls['password'].errors.minlength.requiredLength
+            - registrationForm.controls['password'].errors.minlength.actualLength}} characters
+          </span>
+        </div> -->
+      </div>
         <div class="input-container">
-          <input type="text" id="username-reg" required="required" />
-          <label for="username-reg">Username</label>
+          <input
+            type="password"
+            id="reapeat-password-reg"
+            formControlName="password"
+            required
+          />
+          <label for="reapeat-password-reg">Password</label>
           <div class="bar"></div>
+        </div>
+
+        <div class="input-container">
+          <!-- <label for="username-reg">Choose Profile Photo</label> -->
+          <!-- <label for="username-reg">Username</label>
+          <div class="bar"></div> -->
 
           <!-- <div class="alert alert-danger feedback" *ngIf="!registrationForm.controls['username'].valid && (registrationForm.controls['username'].dirty || registrationForm.controls['username'].touched)">
             <span *ngIf="registrationForm.controls['username'].errors.required">
@@ -43,29 +112,17 @@
             username
             <strong>{{registrationForm.controls['username'].value}}</strong> is already taken.
           </div> -->
+          <input
+            (change)="setImages($event)"
+            type="file"
+            required
+          />
         </div>
-        <div class="input-container">
-          <input type="#{type}" id="password-reg" required="required" />
-          <label for="password-reg">Password</label>
-          <div class="bar"></div>
-          <!-- <div class="feedback" *ngIf="!registrationForm.controls['password'].valid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
-            <span *ngIf="registrationForm.controls['password'].errors.required">
-                Password is required
-            </span>
-            <span *ngIf="registrationForm.controls['password'].errors.minlength">
-              Password must be 8 characters long, we need another {{registrationForm.controls['password'].errors.minlength.requiredLength
-              - registrationForm.controls['password'].errors.minlength.actualLength}} characters
-            </span>
-          </div> -->
-        </div>
-        <div class="input-container">
-          <input type="#{type}" id="reapeat-password-reg" required="required" />
-          <label for="reapeat-password-reg">Repeat Password</label>
-          <div class="bar"></div>
-        </div>
-        <div class="button-container">
+        <div class="button-container" style="margin: 0;">
           <!-- <button [disabled]="!registrationForm.valid"><span>Register</span></button> -->
-          <button (click)="register()"><span>Register</span></button>
+          <button [disabled]="!registerForm.valid" type="submit">
+            <span>Register</span>
+          </button>
         </div>
       </form>
     </div>

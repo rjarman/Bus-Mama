@@ -183,6 +183,11 @@ export interface InfoWindowData {
   distanceMatrixData: MatrixData[];
 }
 
+export interface LoginData {
+  email: string;
+  password: string;
+}
+
 // interface Message {
 //   name: string;
 //   profilePhoto: string;

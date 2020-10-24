@@ -4,7 +4,7 @@ import { URL } from 'src/app/config';
 import { interval } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
-import { ServerData } from 'src/app/shared/types';
+import { LoginData, ServerData } from 'src/app/shared/types';
 
 @Injectable({
   providedIn: 'root',
@@ -47,9 +47,13 @@ export class ServerService {
 
   sendMessage(data: ServerData) {
     this.httpClient
-      .post(URL.CHAT, {reqType: 'addMessage', serverData: data}, {
-        observe: 'response',
-      })
+      .post(
+        URL.CHAT,
+        { reqType: 'addMessage', serverData: data },
+        {
+          observe: 'response',
+        }
+      )
       .subscribe((response) => {});
   }
 }
