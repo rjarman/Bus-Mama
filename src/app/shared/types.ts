@@ -88,16 +88,31 @@ interface Dummy {
  */
 
 export interface Message {
-  _id: string;
+  email: string;
   send: {
-    date?: string;
+    date: string;
     message: string;
   };
-  reply?: {
-    date?: string;
+  reply: {
+    date: string;
     message: string;
   };
-  tag?: string;
+  tag: string;
+}
+
+export interface ServerData {
+  email: string;
+  messages: {
+    send: {
+      date: string;
+      message: string;
+    };
+    reply: {
+      date: string;
+      message: string;
+    };
+    tag: string;
+  };
 }
 
 export interface Profile {

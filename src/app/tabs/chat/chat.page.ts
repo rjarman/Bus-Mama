@@ -1,6 +1,8 @@
 import { Component, AfterViewChecked, AfterViewInit } from '@angular/core';
-import { Message, Profile } from 'src/app/shared/types';
+import { Message, Profile, ServerData } from 'src/app/shared/types';
 import { ServerService } from 'src/app/server.service';
+import { ChatService } from './chat.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-chat',
@@ -8,29 +10,37 @@ import { ServerService } from 'src/app/server.service';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements AfterViewChecked, AfterViewInit {
+  private scrollStatus;
+  private sentToServerData: ServerData;
+
   profile: Profile;
   messages: Message[];
 
   sentMessage: string;
   isTyping: boolean;
 
-  sentToServerData = {
-    _id: '001',
-    send: {
-      date: Date.now().toString(),
-      message: '',
-    },
-    reply: {
-      date: Date.now().toString(),
-      message: 'hello',
-    },
-  };
-
-  private scrollStatus;
-
-  constructor(private serverService: ServerService) {
+  constructor(
+    private serverService: ServerService,
+    private cookieService: CookieService,
+    private chatService: ChatService
+  ) {
     this.isTyping = false;
     this.scrollStatus = true;
+
+    this.sentToServerData = {
+      email: '',
+      messages: {
+        tag: '',
+        send: {
+          date: '',
+          message: '',
+        },
+        reply: {
+          date: '',
+          message: 'hello',
+        },
+      },
+    };
   }
 
   ngAfterViewInit(): void {
@@ -38,6 +48,14 @@ export class ChatPage implements AfterViewChecked, AfterViewInit {
       this.profile = response.body['data'][0];
       this.messages = this.profile.messages;
       this.messageParser();
+    });
+    this.chatService.replyEmitter.subscribe((data) => {
+      this.sentToServerData.messages.reply.message = data.message;
+      this.sentToServerData.messages.reply.date = data.date;
+      this.sentToServerData.messages.tag = data.tag;
+      if (this.sentToServerData.messages.send.message !== '') {
+        this.serverService.sendMessage(this.sentToServerData);
+      }
     });
   }
 
@@ -49,27 +67,25 @@ export class ChatPage implements AfterViewChecked, AfterViewInit {
     }
   }
 
-  private dateTimeParser(dateTime: string) {
-    const tempDateTime = new Date(dateTime);
-    const date = tempDateTime.toDateString();
-    const timeSplit = tempDateTime.toTimeString().split(':');
-    const time = timeSplit[0] + ':' + timeSplit[1];
-    return [date, time];
-  }
-
   private replyHandler() {
     let timeout;
     new Promise((resolve) => {
       this.scrollStatus = false;
       timeout = setTimeout(() => {
         document.getElementById('messageData').innerHTML += `
-        <div class="chat-bubble received" id='${
-          this.sentToServerData._id
-        }2' style="opacity: 100%;">
-        <h6>${this.sentToServerData.reply.message}</h6>
-        <p>Bus-Mama at ${
-          this.dateTimeParser(this.sentToServerData.reply.date)[1]
-        }</p>
+        <div class="chat-bubble received" style="opacity: 100%;">
+          <div style="
+          color: cornflowerblue;
+          font-weight: bold;
+          position: absolute;
+          bottom: 50%; top: 50%;
+          left: -15px;
+          font-size: 10px;
+          transform: rotate(-90deg);">
+            ${this.sentToServerData.messages.tag}
+          </div>
+          <h6>${this.sentToServerData.messages.reply.message}</h6>
+          <p>Bus-Mama at ${this.sentToServerData.messages.reply.date}</p>
         </div>`;
         resolve();
       }, 3000);
@@ -103,21 +119,22 @@ export class ChatPage implements AfterViewChecked, AfterViewInit {
       }
       if (flag) {
         this.isTyping = true;
+        this.chatService.sendMessage({
+          email: this.cookieService.get('email'),
+          message: this.sentMessage,
+        });
+        this.sentToServerData.email = this.cookieService.get('email');
+        this.sentToServerData.messages.send.message = this.sentMessage;
+        this.sentToServerData.messages.send.date = this.chatService.dateTimeParser;
         document.getElementById('messageData').innerHTML += `
-        <div class="chat-bubble send" id='${
-          this.sentToServerData._id
-        }1' style="opacity: 100%;">
-        <h6>${this.sentMessage}</h6>
-        <p>${this.profile.name} at ${
-          this.dateTimeParser(this.sentToServerData.send.date)[1]
-        }</p>
+        <div class="chat-bubble send" style="opacity: 100%;">
+          <h6>${this.sentMessage}</h6>
+          <p>${this.profile.name} at ${this.chatService.dateTimeParser}</p>
         </div>
         `;
         this.scrollStatus = true;
         this.sentMessage = undefined;
         this.replyHandler();
-        // this.httpClient.post(URL.chat, sentToServerData, {observe: 'response'}).subscribe(response => {
-        // });
       }
     }
   }
@@ -125,19 +142,23 @@ export class ChatPage implements AfterViewChecked, AfterViewInit {
   messageParser() {
     this.messages.forEach((message) => {
       document.getElementById('messageData').innerHTML += `
-      <div class="chat-bubble send" id='${
-        message._id
-      }1'" style="opacity: 100%;">
+      <div class="chat-bubble send" style="opacity: 100%;">
         <h6>${message.send.message}</h6>
-        <p>${this.profile.name} at ${
-        this.dateTimeParser(message.send.date)[1]
-      }</p>
+        <p>${this.profile.name} at ${this.chatService.dateTimeParser}</p>
       </div>
-        <div class="chat-bubble received" id='${
-          message._id
-        }2' style="opacity: 100%;">
+        <div class="chat-bubble received" style="opacity: 100%;">
+        <div style="
+        color: cornflowerblue;
+        font-weight: bold;
+        position: absolute;
+        bottom: 50%; top: 50%;
+        left: -15px;
+        font-size: 10px;
+        transform: rotate(-90deg);">
+          ${message.tag}
+        </div>
           <h6>${message.reply.message}</h6>
-          <p>Bus-Mama at ${this.dateTimeParser(message.reply.date)[1]}</p>
+          <p>Bus-Mama at ${this.chatService.dateTimeParser}</p>
         </div>
         `;
     });
