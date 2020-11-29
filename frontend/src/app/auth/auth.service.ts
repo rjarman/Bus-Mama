@@ -11,7 +11,7 @@ import { LoginData } from '../shared/types';
 })
 export class AuthService {
   registerSubject = new Subject<any>();
-  clearData = new Subject<Boolean>();
+  clearData = new Subject<boolean>();
 
   constructor(
     private route: Router,

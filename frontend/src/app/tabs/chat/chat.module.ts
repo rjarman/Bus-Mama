@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, ChatPageRoutingModule],
+  providers: [Geolocation],
   declarations: [ChatPage],
 })
 export class ChatPageModule {}
