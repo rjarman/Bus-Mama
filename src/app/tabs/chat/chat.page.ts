@@ -75,6 +75,17 @@ export class ChatPage implements AfterViewChecked, AfterViewInit {
         document.getElementById('messageData').innerHTML += `
         <div class="chat-bubble received" style="opacity: 100%;">
           <div style="
+            margin: 0 5px;
+            vertical-align: middle;
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            background-color: #676767;
+            border: 1px solid #676767;
+            border-radius: 50%;"></div>
+            <p style="
+            opacity: 1;
+            display: inline;
           color: cornflowerblue;
           font-weight: bold;
           position: absolute;

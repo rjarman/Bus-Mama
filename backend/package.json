@@ -1,0 +1,33 @@
+{
+  "name": "bus_mama_frontend_server",
+  "version": "1.0.0",
+  "description": "This is the node server for Bus-Mama frontend.",
+  "main": "dist/Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node Server.js",
+    "dev:server": "nodemon dist/Server.js",
+    "start:tsc": "tsc -w"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "dist/*"
+    ]
+  },
+  "author": "Rafsun Jany Arman",
+  "license": "MIT License",
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/mongoose": "^5.7.36",
+    "@types/node": "^14.6.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "mongoose": "^5.10.0",
+    "socket.io": "^2.3.0"
+  }
+}
